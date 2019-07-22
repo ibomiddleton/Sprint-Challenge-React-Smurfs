@@ -2,8 +2,24 @@ import React, { Component } from 'react';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import axios from 'axios';
+import {Route} from 'react-router-dom';
+import Navbar from './components/Navbar';
+
+
 
 class App extends Component {
+  componentDidMount() {
+    console.log('inside cdm');
+    axios.get('http://localhost:3333/smurfs')
+      .then(res => this.setState({smurfs: res.data}))
+      .catch(err => console.log(err));
+}
+
+update = (smurfs) =>{
+  this.setState({smurfs: smurfs});
+}
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,8 +32,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
+      <Navbar></Navbar>
+      <Route exact path='/' render={() => <Smurfs smurfs={this.state.smurfs} />} />
+      <Route path='/smurf-form' render={() => <SmurfForm update={this.update} /> }/> 
+        
+        
+
       </div>
     );
   }
