@@ -4,9 +4,13 @@ class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      age: '',
-      height: ''
+      postSuccessMessage: '',
+      postError: '',
+      postSuccessMessage: '',
+      postError: '',
+      postSuccessMessage: '',
+      postError: '',
+      showForm: 'post'
     };
   }
 

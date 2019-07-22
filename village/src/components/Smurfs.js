@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 import Smurf from './Smurf';
 
 class Smurfs extends Component {
+    componentDidMount() {
+        console.log('inside cdm');
+        axios.get('http://localhost:3333/smurfs')
+          .then(res => console.log(res.data.message))
+          .catch(err => console.log(err));
+  }
   render() {
     return (
       <div className="Smurfs">
